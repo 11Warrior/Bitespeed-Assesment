@@ -38,6 +38,34 @@ export const addDataService = async (email: string, phoneNumber: string) => {
 
         if (email === primary.email && phoneNumber === primary.phoneNumber) return 1;
 
+        if (primaryContacts.length > 1) {
+            //multiple primary contacts case merge the later ones
+            const remainingPrimaries = primaryContacts.slice(1);
+
+            for (const remPrimary of remainingPrimaries) {
+                await prisma.contact.update({
+                    where: {
+                        id: remPrimary.id
+                    },
+                    data: {
+                        linkedId: primary.id,
+                        linkPrecedence: 'secondary'
+                    }
+                })
+            }
+
+            await prisma.contact.updateMany({
+                where: {
+                    linkedId: {
+                        in: remainingPrimaries.map((p) => p.id)
+                    }
+                },
+                data: {
+                    linkedId: primary.id
+                }
+            })
+        }
+
         if (primaryContacts.length === 1) {
             const secondaryContact = await prisma.contact.create({
                 data: {
@@ -55,32 +83,6 @@ export const addDataService = async (email: string, phoneNumber: string) => {
                 secondaryContactIds: [secondaryContact.id]
             }
         }
-
-        //multiple primary contacts case merge the later ones
-        const remainingPrimaries = primaryContacts.slice(1);
-
-        for (const remPrimary of remainingPrimaries) {
-            await prisma.contact.update({
-                where: {
-                    id: remPrimary.id
-                },
-                data: {
-                    linkedId: primary.id,
-                    linkPrecedence: 'secondary'
-                }
-            })
-        }
-
-        await prisma.contact.updateMany({
-            where: {
-                linkedId: {
-                    in: remainingPrimaries.map((p) => p.id)
-                }
-            },
-            data: {
-                linkedId: primary.id
-            }
-        })
 
         const updatedData = await prisma.contact.findMany({
             where: {

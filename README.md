@@ -96,7 +96,7 @@ Scenario :
   Final DB state :
   ![alt text](/Images/dbstate4.png)
 
-### Frontend UI 
+# Frontend UI 
 ![alt text](/Images/ui1.png)
 
 ![alt text](/Images/ui2.png)

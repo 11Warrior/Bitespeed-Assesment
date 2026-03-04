@@ -48,36 +48,36 @@ Service -> Database(Postgressql)
 
 
 ### Case (new primary contact) :
-![alt text](case1.png)
+![alt text](/Images/case1.png)
 
   ## API Response
-  ![alt text](newprimary.png)
+  ![alt text](/Images/newprimary.png)
 
 
 ### Case (new secondary created): 
-![alt text](case2.png)
+![alt text](/Images/case2.png)
 
   ## API Response
-  ![alt text](newsecondary.png)
+  ![alt text](/Images/newsecondary.png)
 
 
 ### Case (can primaries change to secondary) : 
-![alt text](case3.png)
+![alt text](/Images/case3.png)
 
 Initial DB state :
-![alt text](dbstate1.png)
+![alt text](/Images/dbstate1.png)
 
   ## API Response
-  ![alt text](primary-to-secondary.png)
+  ![alt text](/Images/primary-to-secondary.png)
 
 Final DB state :
-![alt text](dbstate2.png)
+![alt text](/Images/dbstate2.png)
 
 ### Case (multiple matching case) (custom - edge case not in the assignment) :
 
 
 Initial DB state :
-![alt text](dbstate3.png)
+![alt text](/Images/dbstate3.png)
 
 Scenario :
     Refer to the db state you obtain for this refer above
@@ -91,12 +91,12 @@ Scenario :
     if I try to merge 8 and 9 then all should link to oldest primary ie 7 in this case
 
   ## API Response  
-  ![alt text](multiple-primaries-to-secondary.png)
+  ![alt text](/Images/multiple-primaries-to-secondary.png)
 
   Final DB state :
-  ![alt text](dbstate4.png)
+  ![alt text](/Images/dbstate4.png)
 
 ### Frontend UI 
-![alt text](ui1.png)
+![alt text](/Images/ui1.png)
 
-![alt text](ui2.png)
+![alt text](/Images/ui2.png)
